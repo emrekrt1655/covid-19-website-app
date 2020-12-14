@@ -64,7 +64,7 @@ function App(props) {
       />
       <SearchBox setCountryName={setCountryName}/>
       <CardList item={countryData} />
-      <Footer />
+      
     </>
   );
 }
