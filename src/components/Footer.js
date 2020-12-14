@@ -51,9 +51,9 @@ export default function BottomAppBar() {
           <IconButton edge="start" color="inherit" aria-label="open drawer">
             <MenuIcon />
           </IconButton>
-          {/* <Fab color="secondary" aria-label="add" className={classes.fabButton}>
+          <Fab color="secondary" aria-label="add" className={classes.fabButton}>
             <AddIcon />
-          </Fab> */}
+          </Fab>
           <div className={classes.grow} />
           <IconButton color="inherit">
             <SearchIcon />
