@@ -4,7 +4,6 @@ import Navbar from "./components/Navbar";
 import SearchBox from "./components/SearchBox";
 import CardList from "./components/Card";
 import Footer from "./components/Footer";
-import GeoLocation  from './components/GeoLocation';
 import axios from "axios";
 
 
@@ -17,14 +16,9 @@ function App(props) {
       "https://geolocation-db.com/json/0f761a30-fe14-11e9-b59f-e53803842572"
     )
     .then(response => response.json())
-    //.then(data => setDetails(data?.country_name))
     .then((data) => setCountryName(data?.country_name))
     .catch((err) => console.log(err))
     .finally() ;
-    //console.log("details",details)
-    console.log("countryName",countryName)
-  
-  
   };
   const options = {
     method: "GET",
@@ -41,9 +35,6 @@ function App(props) {
       .request(options)
       .then(function (response) {
         setCountryData(response.data.response[0]);
-        console.log(response.data);
-        console.log(response.data.response[0].cases.total);
-        console.log(response.data.response[0].country);
       })
       .catch(function (error) {
         console.error(error);
@@ -57,14 +48,10 @@ function App(props) {
   return (
     <>
       <Navbar />
-      <GeoLocation 
-        Bas={getUserGeolocationDetails}
-        ulke={countryName}
-      
-      />
-      <SearchBox setCountryName={setCountryName}/>
-      <CardList item={countryData} />
-      
+      <SearchBox setCountryName={setCountryName} ulke={countryName}
+      Bas={getUserGeolocationDetails}/>
+      <CardList item={countryData}   />
+      <Footer/>
     </>
   );
 }

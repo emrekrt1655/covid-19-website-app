@@ -10,9 +10,10 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
   root: {
-    height: "30rem",
+    height: "20rem",
     width: "50rem",
     minWidth: 275,
+    textAlign:'center'
   },
 
   bullet: {
@@ -22,26 +23,30 @@ const useStyles = makeStyles({
   },
 
   title: {
-    fontSize: 14,
+    fontSize: 20,
     backgroundColor: "#FAEDF0",
+    marginBottom:20
   },
 
   pop: {
     backgroundColor: "#E6FFF4",
+    fontSize: 20,
+    marginBottom:20
   },
 
   pos: {
-    marginBottom: 12,
+    marginBottom: 16,
     backgroundColor: "#FFEFC6",
   },
 
   cases: {
       backgroundColor: '#EAE9EA',
+      marginBottom:20
   },
 
   info: {
     backgroundColor: '#F38DA1',
-}
+  }
 });
 
 export default function CardList({ item }) {

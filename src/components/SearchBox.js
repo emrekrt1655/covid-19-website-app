@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Input, Button, Container, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import CountryList from "./CountryList";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -15,9 +16,15 @@ const useStyles = makeStyles((theme) => ({
     height: "5rem",
     textAlign: "center",
   },
+  button:{
+    marginTop: "5rem",
+    marginBottom: "5rem",
+    textAlign: "center",
+    marginLeft:"1rem"
+  }
 }));
 
-const SearchBox = ({setCountryName}) => {
+const SearchBox = ({setCountryName, ulke, Bas}) => {
   const classes = useStyles();
   const [details, setDetails] = useState("");
 
@@ -28,7 +35,7 @@ const SearchBox = ({setCountryName}) => {
       <Grid container direction="row" justify="center" alignItems="center">
         <form className={classes.root} noValidate autoComplete="off">
           <Input
-            placeholder="Type..."
+            placeholder={ulke}
             inputProps={{ "aria-label": "description" }}
             onChange={(event)=>setDetails(event.target.value)}
           />
@@ -38,7 +45,12 @@ const SearchBox = ({setCountryName}) => {
         >
           Search
         </Button>
-        
+        <Button className={classes.button} 
+        variant="contained" color="primary"
+        onClick={Bas}>
+          Get My Country
+        </Button>
+        <CountryList/>
       </Grid>
     </Container>
   );
