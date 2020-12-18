@@ -4,7 +4,9 @@ import Navbar from "./components/Navbar";
 import SearchBox from "./components/SearchBox";
 import CardList from "./components/Card";
 import Footer from "./components/Footer";
+import CountryList from "./components/CountryList";
 import axios from "axios";
+import { Directions } from "@material-ui/icons";
 
 
 function App(props) {
@@ -47,7 +49,10 @@ function App(props) {
 
   return (
     <>
+      <div>
       <Navbar />
+      <CountryList/>
+      </div>
       <SearchBox setCountryName={setCountryName} ulke={countryName}
       Bas={getUserGeolocationDetails}/>
       <CardList item={countryData}   />

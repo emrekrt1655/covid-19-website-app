@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Input, Button, Container, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import CountryList from "./CountryList";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,7 +50,6 @@ const SearchBox = ({setCountryName, ulke, Bas}) => {
         onClick={Bas}>
           Get My Country
         </Button>
-        <CountryList/>
       </Grid>
     </Container>
   );
