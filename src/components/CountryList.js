@@ -10,6 +10,7 @@ import ExpandMore from "@material-ui/icons/ExpandMore";
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    position: "absolute",
     width: "100%",
     maxWidth: 200,
     backgroundColor: '#3F51B5',
@@ -20,7 +21,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function NestedList() {
+export default function NestedList({item}) {
+  console.log(item);
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
 
@@ -40,9 +42,18 @@ export default function NestedList() {
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
-          <ListItem button className={classes.nested}>
-            <ListItemText primary="Emre" />
-          </ListItem>
+          {
+            item?.map(country  => {
+              return(
+                <ListItem button className={classes.nested}>
+                      <ListItemText primary={country?.country} />
+                      
+                </ListItem>
+              )
+            })
+          }
+          
+          
         </List>
       </Collapse>
     </List>

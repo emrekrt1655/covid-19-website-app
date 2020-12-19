@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 
 import Navbar from "./components/Navbar";
-import SearchBox from "./components/SearchBox";
+import ComboSearchBox from "./components/ComboSearchBox";
 import CardList from "./components/Card";
 import Footer from "./components/Footer";
-import CountryList from "./components/CountryList";
 import axios from "axios";
-import { Directions } from "@material-ui/icons";
+
 
 
 function App(props) {
+  const [countryList, setCountryList] = useState([]);
   const [countryData, setCountryData] = useState([]);
   const [countryName, setCountryName] = useState("Turkey");
 
@@ -32,29 +32,58 @@ function App(props) {
     },
   };
 
+  
   const fetchData = () => {
     axios
       .request(options)
       .then(function (response) {
         setCountryData(response.data.response[0]);
+        
+        
       })
       .catch(function (error) {
         console.error(error);
       });
   };
 
+  const options2 = {
+    method: "GET",
+    url: "https://covid-193.p.rapidapi.com/statistics",
+    headers: {
+      "x-rapidapi-key": "3b04f00e76msh8bf8189258b4a93p1a6a2fjsnfeb7d7a08448",
+      "x-rapidapi-host": "covid-193.p.rapidapi.com",
+    },
+  };
+
+  const fetchData2 = () => {
+    axios
+      .request(options2)
+      .then(function (response) {
+        setCountryList(response.data.response);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
   useEffect(() => {
     fetchData();
   }, [countryName]);
 
+  useEffect(() => {
+    fetchData2();
+  }, []);
+
+
+
+  
+
   return (
     <>
-      <div>
+      
       <Navbar />
-      <CountryList/>
-      </div>
-      <SearchBox setCountryName={setCountryName} ulke={countryName}
-      Bas={getUserGeolocationDetails}/>
+      
+      <ComboSearchBox setCountryName={setCountryName}
+      Bas={getUserGeolocationDetails} item={countryList}/>
       <CardList item={countryData}   />
       <Footer/>
     </>
