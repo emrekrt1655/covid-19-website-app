@@ -16,19 +16,28 @@ const useStyles = makeStyles({
 });
 
 export default function CountrySelect({setCountryName, Bas, item}) {
+  
   const classes = useStyles();
   const [details, setDetails] = useState('');
   const countries = item?.map(item => {
-    return({'label': item?.country})
-    
-        
+    return({'label': item?.country})       
 })
-    
+
+  const countryNames = countries?.map(name => {
+    return name.label
+  })
+  const isInclude = countryNames.includes(details);
+
+const onSearch = () => {
+   isInclude  && setCountryName(details)
+}
+
     
   return (
     <Container style={{ margin: "5rem auto 5rem"}} >
       <Grid container direction="row" justify="center" alignItems="center">
         <Autocomplete
+          onChange={(event, value) => setDetails(value.label)}
           id="country-select-demo"
           style={{ width: 300}}
           options={countries}
@@ -37,10 +46,6 @@ export default function CountrySelect({setCountryName, Bas, item}) {
           }}
           autoHighlight
           getOptionLabel={(option) => option.label}
-          getOptionSelected={(option, value) => option.label === value.label }
-        onChange={( newValue) => {
-            setDetails(newValue);
-        }}
           renderOption={(option) => (
             <React.Fragment>
               {option.label}
@@ -56,11 +61,13 @@ export default function CountrySelect({setCountryName, Bas, item}) {
                 // autoComplete: "new-password", // disable autocomplete and autofill
               }}
               onChange={(event)=>setDetails(event.target.value)}
+             
             />
           )}
         />
         
-        <Button variant="contained" color="primary" style={{ marginLeft: "1rem "}} onClick={()=>setCountryName(details)}>
+        <Button variant="contained" color="primary" style={{ marginLeft: "1rem "}} 
+        onClick={onSearch}>
           Search 
         </Button>
         <Button
