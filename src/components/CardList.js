@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import {CountryContext} from '../context/CountryContext';
 import {
   Card,
   CardContent,
@@ -49,9 +50,11 @@ const useStyles = makeStyles({
   }
 });
 
-export default function CardList({ item }) {
-  const { cases, deaths } = item;
+export default function CardList() {
   const classes = useStyles();
+  const {countryData} = useContext(CountryContext);
+  const item = countryData;
+  const { cases, deaths } = item;
   
   return (
     <Container className={classes.wrapper} maxWidth="sm">

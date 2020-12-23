@@ -5,12 +5,10 @@ import ComboSearchBox from "./ComboSearchBox";
 import CardList from "./CardList";
 import Footer from "./Footer";
 import MyImageSlide from "./marquee-slider/MyImageSlide";
-
-
 require("dotenv").config();
 
 function Main() {
-  const {countryList, countryData, setCountryName, getUserGeolocationDetails} = useContext(CountryContext)
+  const {countryList, setCountryName, getUserGeolocationDetails} = useContext(CountryContext)
 
   return (
     <React.Fragment>
@@ -20,7 +18,7 @@ function Main() {
         bas={getUserGeolocationDetails} 
         item={countryList}
       />
-      <CardList item={countryData}/>
+      <CardList/>
       <MyImageSlide  item={countryList}/>
       <Footer/>
     </React.Fragment>
