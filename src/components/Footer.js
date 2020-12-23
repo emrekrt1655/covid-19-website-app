@@ -20,15 +20,14 @@ function Copyright() {
 const useStyles = makeStyles((theme) => ({
   main: {
     width:'100%',
-    position: 'absolute',
+    position: 'fixed',
     bottom: 0,
     marginTop: theme.spacing(8),
-    marginBottom: theme.spacing(2),
+    // marginBottom: theme.spacing(2),
     textAlign:'center'
 
   },
   footer: {
-    
     padding: theme.spacing(3, 2),
     marginTop: "auto",
     backgroundColor:

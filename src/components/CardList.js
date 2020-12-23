@@ -52,8 +52,7 @@ const useStyles = makeStyles({
 export default function CardList({ item }) {
   const { cases, deaths } = item;
   const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
-
+  
   return (
     <Container className={classes.wrapper} maxWidth="sm">
       <Grid container direction="row" justify="center" alignItems="center">
