@@ -4,6 +4,9 @@ import Navbar from "./Navbar";
 import ComboSearchBox from "./ComboSearchBox";
 import CardList from "./CardList";
 import Footer from "./Footer";
+import MyImageSlide from "./marquee-slider/MyImageSlide";
+
+
 require("dotenv").config();
 
 function Main() {
@@ -18,6 +21,7 @@ function Main() {
         item={countryList}
       />
       <CardList item={countryData}/>
+      <MyImageSlide  item={countryList}/>
       <Footer/>
     </React.Fragment>
   );
