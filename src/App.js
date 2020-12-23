@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from "react";
-
-import Navbar from "./components/Navbar";
-import ComboSearchBox from "./components/ComboSearchBox";
-import CardList from "./components/Card";
-import Footer from "./components/Footer";
+import {CountryContext} from './context/CountryContext';
+import Main from './components/Main';
 import axios from "axios";
+require("dotenv").config();
 
-
-
-function App(props) {
+function App() {
   const [countryList, setCountryList] = useState([]);
   const [countryData, setCountryData] = useState([]);
   const [countryName, setCountryName] = useState("Turkey");
@@ -21,42 +17,43 @@ function App(props) {
     .then((data) => setCountryName(data?.country_name))
     .catch((err) => console.log(err))
     .finally() ;
-  };
-  const options = {
-    method: "GET",
-    url: "https://covid-193.p.rapidapi.com/statistics",
-    params: { country: `${countryName}` },
-    headers: {
-      "x-rapidapi-key": "3b04f00e76msh8bf8189258b4a93p1a6a2fjsnfeb7d7a08448",
-      "x-rapidapi-host": "covid-193.p.rapidapi.com",
-    },
+    console.log("countryName", countryName)
   };
 
-  
-  const fetchData = () => {
-    axios
+  const fetchData = async () => {
+
+    const options = {
+      method: "GET",
+      url: process.env.REACT_APP_API_URL,
+      params: { country: `${countryName}` },
+      headers: {
+        "x-rapidapi-key": process.env.REACT_APP_API_KEY,
+        "x-rapidapi-host": process.env.REACT_APP_API_HOST,
+      },
+    };
+
+    await axios
       .request(options)
       .then(function (response) {
         setCountryData(response.data.response[0]);
-        
-        
       })
       .catch(function (error) {
         console.error(error);
       });
   };
 
-  const options2 = {
-    method: "GET",
-    url: "https://covid-193.p.rapidapi.com/statistics",
-    headers: {
-      "x-rapidapi-key": "3b04f00e76msh8bf8189258b4a93p1a6a2fjsnfeb7d7a08448",
-      "x-rapidapi-host": "covid-193.p.rapidapi.com",
-    },
-  };
+  const fetchData2 = async () => {
 
-  const fetchData2 = () => {
-    axios
+    const options2 = {
+      method: "GET",
+      url: process.env.REACT_APP_API_URL,
+      headers: {
+        "x-rapidapi-key": process.env.REACT_APP_API_KEY,
+        "x-rapidapi-host": process.env.REACT_APP_API_HOST,
+      },
+    };
+
+    await axios
       .request(options2)
       .then(function (response) {
         setCountryList(response.data.response);
@@ -65,6 +62,7 @@ function App(props) {
         console.error(error);
       });
   };
+
   useEffect(() => {
     fetchData();
   }, [countryName]);
@@ -73,20 +71,10 @@ function App(props) {
     fetchData2();
   }, []);
 
-
-
-  
-
   return (
-    <>
-      
-      <Navbar />
-      
-      <ComboSearchBox setCountryName={setCountryName}
-      Bas={getUserGeolocationDetails} item={countryList}/>
-      <CardList item={countryData}   />
-      <Footer/>
-    </>
+    <CountryContext.Provider value={{countryList, setCountryList, countryData, setCountryData, countryName, setCountryName, getUserGeolocationDetails}}>
+      <Main/>
+    </CountryContext.Provider>
   );
 }
 
