@@ -17,7 +17,6 @@ function App() {
     .then((data) => setCountryName(data?.country_name))
     .catch((err) => console.log(err))
     .finally() ;
-    console.log("countryName", countryName)
   };
 
   const fetchData = async () => {

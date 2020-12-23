@@ -17,19 +17,16 @@ export default function CountrySelect({ setCountryName, bas, item }) {
   const classes = useStyles();
   const [details, setDetails] = useState("");
 
-  console.log("item:", item)
-
   const countries = item?.map((item) => {
     return { label: item?.country };
   });
-  console.log("countries:", countries)
 
   const countryNames = countries?.map((name) => {
     return name.label;
   });
   
   const isInclude = countryNames.includes(details);
-  console.log(isInclude)
+
 
   const onSearch = () => {
     isInclude && setCountryName(details);
@@ -39,9 +36,9 @@ export default function CountrySelect({ setCountryName, bas, item }) {
     <Container style={{ margin: "5rem auto 5rem" }}>
       <Grid container direction="row" justify="center" alignItems="center">
         <Autocomplete
+          value={null}
           onChange={(event, value) => {
             setDetails(value.label)
-            console.log(value.label)
           }}
           id="country-select-demo"
           style={{ width: 300 }}
@@ -66,7 +63,6 @@ export default function CountrySelect({ setCountryName, bas, item }) {
               }}
               onChange={(event) => {
                 setDetails(event.target.value) 
-                console.log(event.target.value)
               }}
             />
           )}
