@@ -54,13 +54,13 @@ const flagCard = ({code,item,countryNames}) => {
     return (
         <div>
            <Review >
-                <Avatar scale={scale}>                
+                {/* <Avatar scale={scale}>                
                   <img src={img3} alt={MyCode} />
-                </Avatar>
+                </Avatar> */}
 
                 <Content scale={scale}>
                   
-                  <h5>
+                  <h5 style={{marginLeft: '5px'}}>
                     {countryNames} ({item[code]?.day})
                   </h5>
 
