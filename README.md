@@ -19,14 +19,11 @@ You will also see any lint errors in the console.
 ### `yarn install`
 
 
+## ou can wath from here
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### [Covid 19 Website App](https://www.youtube.com/watch?v=pe8CFxKDB5E&feature=youtu.be)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
 ## AIM
 
